@@ -17,6 +17,8 @@ var express       = require('express');
 var sass          = require('gulp-sass');
 var neat          = require('node-neat');
 var rigger        = require('gulp-rigger');
+var _             = require('lodash');
+var path          = require('path');
 
 gulp.task('browser-sync', function() {
   browserSync.init({
@@ -39,10 +41,13 @@ gulp.task('static-server', function() {
 
 gulp.task('sass:build', function() {
 
+  var bootstrapPath = './node_modules/bootstrap-sass/assets/stylesheets';
+
   gulp.src('./styles/**/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(sass.sync({ includePaths: neat.includePaths }).on('error', sass.logError))
+    .pipe(sass.sync({ includePaths: _.flatten([neat.includePaths, bootstrapPath], true) })
+      .on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(concat('style.css'))
     .pipe(sourcemaps.write('.'))
@@ -56,6 +61,11 @@ gulp.task('sass:watch', function() {
 gulp.task('fonts', function() {
   gulp.src(['node_modules/font-awesome/fonts/*', './fonts/*'])
     .pipe(gulp.dest('public/fonts'));
+});
+
+gulp.task('data', function() {
+  gulp.src(['./data/*'])
+    .pipe(gulp.dest('public/data'));
 });
 
 gulp.task('images:build', function() {
@@ -109,6 +119,6 @@ gulp.task('html:watch', function() {
 
 gulp.task('watch', ['images:watch', 'js:watch', 'sass:watch', 'html:watch']);
 
-gulp.task('default', ['images:build', 'js:build', 'sass:build', 'html:build', 'fonts']);
+gulp.task('default', ['images:build', 'js:build', 'sass:build', 'html:build', 'fonts', 'data']);
 
 gulp.task('serve', ['default', 'static-server', 'watch']);

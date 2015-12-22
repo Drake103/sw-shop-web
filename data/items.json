@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "id": 0,
+      "name": 0,
+      "color": 0,
+      "issue_date": 0,
+      "price": 0,
+      "raiting": 0,
+      "in_stock": true,
+      "image_url": ""
+    }
+  ]
+}

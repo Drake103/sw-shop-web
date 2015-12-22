@@ -1,3 +1,10 @@
+@import '_bootstrap-sprockets';
+@import '_bootstrap';
+
 body {
   margin: 0;
+}
+
+#content-wrapper {
+  @extend .container;
 }
