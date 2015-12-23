@@ -1,32 +1,37 @@
-<div class="filter-area">
-  <div>
-    From <input type='date'/>
-    To <input type='date'/>
+<div ng-controller='SearchController as ctrl'>
+  <div class="page-header">
+    <h1>Items</h1>
   </div>
-  <div>
-    <input type='checkbox'/> In stock only
-  </div>
-  <div>
-    Price from <input type='number'/> To  <input type='number'/>
-  </div>
-  <div>
-    Color
-    <select>
-      <option>Red</option>
-      <option>Red</option>
-      <option>Red</option>
-    </select>
-  </div>
-</div>
-<ul class="items-list">
-  <li class="item-row">
-    <div class="row">
-      <div class="col-2"></div>
-      <div class="col-2"></div>
-      <div class="col-2"></div>
-      <div class="col-2"></div>
-      <div class="col-2"></div>
-      <div class="col-2"></div>
+  <div class="panel panel-default filter-area">
+    <div>
+      From <input type='date'/>
+      To <input type='date'/>
     </div>
-  </li>
-</ul>
+    <div>
+      <input type='checkbox'/> In stock only
+    </div>
+    <div>
+      Price from <input type='number'/> To  <input type='number'/>
+    </div>
+    <div>
+      Color
+      <select>
+        <option>Red</option>
+        <option>Red</option>
+        <option>Red</option>
+      </select>
+    </div>
+  </div>
+  <ul class="list-group items-list">
+    <li class="list-group-item item-row" ng-repeat="item in items">
+      <div class="row">
+        <div class="col-2">item.id</div>
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+      </div>
+    </li>
+  </ul>
+</div>

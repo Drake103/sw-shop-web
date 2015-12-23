@@ -1,0 +1,14 @@
+.form-signup {
+  margin: 0 auto;
+  max-width: 500px;
+  min-width: 400px;
+
+  .user-icon {
+    width: 36px;
+    margin: 10px auto;
+    i {
+      @extend .text-primary;
+      font-size: 36px;
+    }
+  }
+}
