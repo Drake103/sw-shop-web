@@ -1,0 +1,17 @@
+@import 'bourbon';
+
+.item-list {
+  .item-list-li {
+    @include clearfix();
+  }
+
+  .item-list-row {
+
+    .item-image {
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+}

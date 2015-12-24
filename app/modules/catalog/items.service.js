@@ -8,7 +8,7 @@ class ItemsService {
 
   _parseResponseDates(response) {
     let items = response.data.items;
-    _.forEach(items, i => i.issueDate = new Date(i.issueDate * 1000));
+    _.forEach(items, i => i.issue_date = new Date(i.issue_date * 1000));
 
     return response;
   }

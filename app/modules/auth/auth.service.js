@@ -1,9 +1,17 @@
 import _ from 'lodash';
 
 class AuthService {
-  constructor($q, $resource) {
+  constructor($q, $resource, $rootScope, $location) {
     this.$q = $q;
     this.$resource = $resource;
+    this.$rootScope = $rootScope;
+    this.$location = $location;
+
+    this.loginPath = '/login';
+    this.user = {
+      isAuthenticated: false,
+      email: null,
+    };
   }
 
   signUp(email, password) {
@@ -40,16 +48,29 @@ class AuthService {
       return dfd.promise;
     }
 
+    this._changeAuth(true, email);
+
     dfd.resolve();
     return dfd.promise;
   }
 
-  static createInstance($q, $resource) {
-    AuthService.instance = new AuthService($q, $resource);
+  _changeAuth(isAuthenticated, email) {
+    this.user.isAuthenticated = isAuthenticated;
+    this.user.email = isAuthenticated ? email : null;
+
+    this.$rootScope.$broadcast('loginStatusChanged', isAuthenticated);
+  }
+
+  redirectToLogin() {
+    this.$rootScope.$broadcast('redirectToLogin', null);
+  }
+
+  static createInstance($q, $resource, $rootScope, $location) {
+    AuthService.instance = new AuthService($q, $resource, $rootScope, $location);
     return AuthService.instance;
   }
 }
 
-AuthService.createInstance.$inject = ['$q', '$resource'];
+AuthService.createInstance.$inject = ['$q', '$resource', '$rootScope', '$location'];
 
 export default AuthService;

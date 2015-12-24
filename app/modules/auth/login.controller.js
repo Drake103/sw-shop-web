@@ -3,17 +3,23 @@ import _ from 'lodash';
 class LogInController {
   constructor($scope, $routeParams, $location, AuthService) {
     this.$scope = $scope;
+    this.$location = $location;
     this.AuthService = AuthService;
   }
 
-  signup() {
+  login() {
     let dfd = this.AuthService.logIn(this.email, this.password);
     dfd.then(resp => {
-      alert('success');
+      this.$location.path('/');
+      this.$location.replace();
     }, resp => {
 
       alert(resp.msg);
     });
+  }
+
+  redirectToSignup() {
+    this.$location.path('/signup');
   }
 }
 

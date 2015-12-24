@@ -6,9 +6,9 @@
       </a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li class="nav-link"><a href="#/signup">Sign up</a></li>
-      <li class="nav-link"><a href="#/login">Log in</a></li>
-      <li><a>Cart: 3 items</a></li>
+      <li ng-hide="isAuthenticated"><a href="#/signup">Sign up</a></li>
+      <li ng-hide="isAuthenticated"><a href="#/login">Log in</a></li>
+      <li ng-show="isAuthenticated"><a>Cart: 3 items</a></li>
     </ul>
   </div>
 </nav>
