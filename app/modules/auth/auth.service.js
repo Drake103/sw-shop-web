@@ -14,8 +14,6 @@ class AuthService {
       isAuthenticated: false,
       email: null,
     };
-
-    this.checkIfAuthenticated();
   }
 
   checkIfAuthenticated() {

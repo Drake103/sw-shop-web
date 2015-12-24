@@ -27,6 +27,7 @@ class NavbarController {
       $location.replace();
     });
 
+    console.log('binding loginStatusChanged');
     $scope.$on('loginStatusChanged', (evt, isAuthenticated, username) => {
       console.log('loginStatusChanged invoked');
 
@@ -47,6 +48,8 @@ class NavbarController {
     });
 
     $scope.logout = () => {AuthService.logOut();};
+
+    AuthService.checkIfAuthenticated();
   }
 }
 
