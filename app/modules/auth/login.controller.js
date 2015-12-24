@@ -1,27 +1,42 @@
 import _ from 'lodash';
+import config from 'config';
 
 class LogInController {
-  constructor($scope, $routeParams, $location, AuthService) {
+  constructor($scope, $routeParams, $location, $rootScope, AuthService) {
     this.$scope = $scope;
     this.$location = $location;
+    this.$rootScope = $rootScope;
     this.AuthService = AuthService;
+
+    $scope.vm = {};
   }
 
   login() {
-    let dfd = this.AuthService.logIn(this.email, this.password);
+    let vm = this.$scope.vm;
+
+    if (!vm.email || !config.emailRegexp.test(vm.email)) {
+      this.showError('Invalid email.');
+      return;
+    }
+
+    let dfd = this.AuthService.logIn(vm.email, vm.password);
     dfd.then(resp => {
       this.$location.path('/');
       this.$location.replace();
     }, resp => {
 
-      alert(resp.msg);
+      this.showError(resp.msg);
     });
   }
 
   redirectToSignup() {
     this.$location.path('/signup');
   }
+
+  showError(msg) {
+    this.$rootScope.$broadcast('notifyUser', {type:'error', msg});
+  }
 }
 
-LogInController.$inject = ['$scope', '$routeParams', '$location', 'AuthService'];
+LogInController.$inject = ['$scope', '$routeParams', '$location', '$rootScope', 'AuthService'];
 export default LogInController;

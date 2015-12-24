@@ -3,7 +3,7 @@ class Rating {
     this.restrict = 'A';
     this.templateUrl = '/shared/rating/rating.view.html';
     this.scope = {
-      rating: '=rating',
+      rating: '=dataRating',
     };
   }
 

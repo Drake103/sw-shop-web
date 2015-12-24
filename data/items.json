@@ -6,7 +6,7 @@
       "color": "Red",
       "issueDate": 1450976578,
       "price": 99.9,
-      "raiting": 3.9,
+      "rating": 3.9,
       "inStock": false,
       "imageUrl": "/images/ferrari.jpg"
     },
@@ -16,7 +16,7 @@
       "color": "Red",
       "issueDate": 1450976578,
       "price": 98.9,
-      "raiting": 4.0,
+      "rating": 4.0,
       "inStock": false,
       "imageUrl": "/images/mercedes.jpg"
     },
@@ -26,7 +26,7 @@
       "color": "White",
       "issueDate": 1450976578,
       "price": 90.0,
-      "raiting": 4.1,
+      "rating": 4.1,
       "inStock": true,
       "imageUrl": "/images/bmw.jpg"
     },
@@ -36,7 +36,7 @@
       "color": "Black",
       "issueDate": 1450976578,
       "price": 101.1,
-      "raiting": 4.7,
+      "rating": 4.7,
       "inStock": true,
       "imageUrl": "/images/audi.jpg"
     }

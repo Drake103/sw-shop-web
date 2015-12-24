@@ -1,3 +1,11 @@
+<div class="alert-fixed-top-wrapper">
+  <div class="alert alert-danger alert-dismissable alert-fixed-top" ng-show="alert.show" role="alert">
+    <button type="button" class="close" aria-label="Close" ng-click="closeAlert()"><span aria-hidden="true">&times;</span></button>
+    <strong>Validation error.</strong> {{alert.msg}}
+  </div>
+</div>
+
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">

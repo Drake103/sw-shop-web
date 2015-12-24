@@ -1,0 +1,12 @@
+.alert-fixed-top-wrapper {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 99999;
+
+  .alert-fixed-top {
+    margin: 0 auto;
+    max-width: 550px;
+    min-width: 400px;
+  }
+}

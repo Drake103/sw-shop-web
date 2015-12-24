@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import SHA256 from 'crypto-js/sha256';
 
 class AuthService {
   constructor($q, $resource, $rootScope, $location) {
@@ -21,7 +22,7 @@ class AuthService {
     let user = users[email];
 
     if (!user) {
-      user = { email: email, hashedPassword: password };
+      user = { email: email, hashedPassword: SHA256(password).toString() };
       users[email] = user;
       localStorage.setItem('users', JSON.stringify(users));
       dfd.resolve(user);
@@ -43,7 +44,7 @@ class AuthService {
       return dfd.promise;
     }
 
-    if (user.password !== password) {
+    if (user.hashedPassword !== SHA256(password).toString()) {
       dfd.reject({ msg: 'Password is incorrect.' });
       return dfd.promise;
     }

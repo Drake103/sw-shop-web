@@ -59,25 +59,25 @@
   <ul class="list-group item-list">
     <li class="list-group-item item-list-li" ng-repeat="item in items | catalogSearch:filter">
       <div class="row item-list-row">
-        <div class="col-md-4">
-          <div class="thumbnail item-image">
-            <img src="{{::item.imageUrl}}" alt="{{::item.name}}">
+        <div class="col-md-2 col-md-offset-1">
+          <div class="item-image">
+            <img ng-src="{{::item.imageUrl}}" alt="{{::item.name}}">
           </div>
         </div>
-        <div class="col-md-2">
-          <div class="item-field">{{::item.name}}</div>
+        <div class="col-md-2 col-md-offset-1">
+          <div class="item-field item-name">{{::item.name}}</div>
           <div class="item-field">Color: {{::item.color}}</div>
         </div>
         <div class="col-md-4">
           <div class="item-field">
-            Issue date {{::item.issueDate}}
+            Issue date: {{::item.issueDate | date:'yyyy/dd/MM' }}
           </div>
           <div class="item-field">
             <input type="checkbox" ng-model="item.in_stock" onclick="return false" /> In stock
           </div>
         </div>
         <div class="col-md-2">
-          <div>Price: <span class="item-price">{{::item.price}}</span></div>
+          <div>Price: <span class="item-price">{{::item.price | currency:'$':2 }}</span></div>
           <div><button type="submit" class="btn btn-primary" ng-click="ctrl.addToCart(item)">Order</button></div>
         </div>
       </div>
