@@ -6,6 +6,15 @@
   }
 
   .item-list-row {
+    .item-field {
+      color: #333;
+      font-size: 1.2em;
+    }
+
+    .item-price {
+      font-weight: bold;
+      font-size: 1.5em;
+    }
 
     .item-image {
       img {

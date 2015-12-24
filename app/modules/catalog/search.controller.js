@@ -1,16 +1,26 @@
 import _ from 'lodash';
 
 class SearchController {
-  constructor($scope, $routeParams, $location, ItemsService, CartService) {
+  constructor($scope, $routeParams, $location, ItemsService, CartService, DictionaryService) {
     this.$scope = $scope;
     this.ItemsService = ItemsService;
     this.CartService = CartService;
-    this.$scope.items = [];
-    this.$scope.filter = {};
+    this.DictionaryService = DictionaryService;
 
-    let dfd = this.ItemsService.getItems();
-    dfd.then(resp => {
+    this.$scope.items = [];
+    this.$scope.filter = {
+      dateFrom: null,
+      dateTo: null,
+      inStockOnly: false,
+      color: null,
+    };
+
+    this.ItemsService.getItems().then(resp => {
       this.$scope.items = resp.data.items;
+    });
+
+    this.DictionaryService.getColors().then(resp => {
+      this.$scope.colors = resp.colors;
     });
   }
 
@@ -26,5 +36,5 @@ class SearchController {
   }
 }
 
-SearchController.$inject = ['$scope', '$routeParams', '$location', 'ItemsService', 'CartService'];
+SearchController.$inject = ['$scope', '$routeParams', '$location', 'ItemsService', 'CartService', 'DictionaryService'];
 export default SearchController;

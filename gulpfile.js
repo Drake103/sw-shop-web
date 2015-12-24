@@ -63,9 +63,18 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('public/fonts'));
 });
 
-gulp.task('data', function() {
+gulp.task('data:build', function() {
   gulp.src(['./data/*'])
     .pipe(gulp.dest('public/data'));
+});
+
+gulp.task('data:watch', function() {
+  gulp.watch('./data/**/*', ['data:build']);
+});
+
+gulp.task('favicon', function() {
+  gulp.src(['./favicon.ico'])
+    .pipe(gulp.dest('public'));
 });
 
 gulp.task('images:build', function() {
@@ -117,8 +126,8 @@ gulp.task('html:watch', function() {
   gulp.watch('./app/**/*.html', ['html:build']);
 });
 
-gulp.task('watch', ['images:watch', 'js:watch', 'sass:watch', 'html:watch']);
+gulp.task('watch', ['images:watch', 'js:watch', 'sass:watch', 'html:watch', 'data:watch']);
 
-gulp.task('default', ['images:build', 'js:build', 'sass:build', 'html:build', 'fonts', 'data']);
+gulp.task('default', ['images:build', 'js:build', 'sass:build', 'html:build', 'fonts', 'data:build', 'favicon']);
 
 gulp.task('serve', ['default', 'static-server', 'watch']);

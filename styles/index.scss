@@ -1,10 +1,11 @@
 @import '_bootstrap-sprockets';
 @import '_bootstrap';
 
+@import 'bourbon';
+
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 
 body {
-  margin: 0;
 }
 
 #content-wrapper {
