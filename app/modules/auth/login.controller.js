@@ -21,6 +21,7 @@ class LogInController {
 
     let dfd = this.AuthService.logIn(vm.email, vm.password);
     dfd.then(resp => {
+      this.hideAlerts();
       this.$location.path('/');
       this.$location.replace();
     }, resp => {
@@ -31,6 +32,10 @@ class LogInController {
 
   redirectToSignup() {
     this.$location.path('/signup');
+  }
+
+  hideAlerts() {
+    this.$rootScope.$broadcast('hideAlerts', null);
   }
 
   showError(msg) {

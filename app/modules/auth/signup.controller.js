@@ -31,12 +31,17 @@ class SignUpController {
 
     let dfd = this.AuthService.signUp(vm.email, vm.password);
     dfd.then(resp => {
+      this.hideAlerts();
       alert('Account was successfully created!');
       this.$location.path('/login');
     }, resp => {
 
       this.showError(resp.msg);
     });
+  }
+
+  hideAlerts() {
+    this.$rootScope.$broadcast('hideAlerts', null);
   }
 
   showError(msg) {

@@ -2,10 +2,11 @@ import angular from 'angular';
 import 'angular-route';
 import 'angular-resource';
 import 'angular-ui-bootstrap';
+import 'angular-cookies';
 
 let moduleName = 'CatalogModule';
 
-let ngModule = angular.module(moduleName, ['ngRoute', 'ngResource', 'ui.bootstrap']);
+let ngModule = angular.module(moduleName, ['ngRoute', 'ngResource', 'ui.bootstrap', 'ngCookies']);
 
 import ItemsService from './items.service';
 import CartService from './cart.service';

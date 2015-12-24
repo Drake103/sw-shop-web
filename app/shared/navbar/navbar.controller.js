@@ -27,13 +27,26 @@ class NavbarController {
       $location.replace();
     });
 
-    $scope.$on('loginStatusChanged', (evt, isAuthenticated) => {
+    $scope.$on('loginStatusChanged', (evt, isAuthenticated, username) => {
+      console.log('loginStatusChanged invoked');
+
       $rootScope.isAuthenticated = isAuthenticated;
+      $rootScope.username = username;
+
+      if (!isAuthenticated) {
+        AuthService.redirectToLogin();
+      }
     });
 
     $scope.$on('notifyUser', (evt, alertInfo) => {
       _showAlert(alertInfo.type, alertInfo.msg);
     });
+
+    $scope.$on('hideAlerts', (evt) => {
+      $scope.closeAlert();
+    });
+
+    $scope.logout = () => {AuthService.logOut();};
   }
 }
 
