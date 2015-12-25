@@ -1,5 +1,6 @@
 import angluar from 'angular';
 import ngRoute from 'angular-route';
+import 'angular-ui-bootstrap';
 
 import Header from './shared/header/header.directive';
 import Navbar from './shared/navbar/navbar.directive';
@@ -10,7 +11,7 @@ import CatalogModule from './modules/catalog/catalog.module';
 
 import authRunBlock from './modules/auth/auth.runblock';
 
-var app = angular.module('sws', [AuthModule, CatalogModule]);
+var app = angular.module('sws', [AuthModule, CatalogModule, 'ui.bootstrap']);
 
 app.directive('swsHeader', Header.directiveFactory);
 app.directive('swsNavbar', Navbar.directiveFactory);

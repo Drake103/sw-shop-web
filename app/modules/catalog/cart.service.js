@@ -1,20 +1,32 @@
 import _ from 'lodash';
 
 class CartService {
-  constructor($q, $resource) {
+  constructor($q, $resource, $rootScope) {
     this.$q = $q;
     this.$resource = $resource;
+    this.$rootScope = $rootScope;
+  }
+
+  clearCart() {
+    var dfd = this.$q.defer();
+
+    sessionStorage.removeItem('cartItems');
+    this.$rootScope.$broadcast('cartItemsChanged', []);
+
+    return dfd.promise;
   }
 
   addItem(item) {
     var dfd = this.$q.defer();
 
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
     let itemInCart = _.find(cartItems, { id: item.id });
 
     if (!itemInCart) {
       cartItems.push(item);
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      this.$rootScope.$broadcast('cartItemsChanged', cartItems);
 
       dfd.resolve(cartItems);
     } else {
@@ -24,15 +36,17 @@ class CartService {
     return dfd.promise;
   }
 
-  removeItem(itemId) {
+  removeItem(item) {
     var dfd = this.$q.defer();
 
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    let item = _.find(cartItems, { id: itemId });
+    let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+    let cartItem = _.find(cartItems, { id: item.id });
 
-    if (!!item) {
-      _.remove(cartItems, x => x.id == itemId);
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    if (!!cartItem) {
+      _.remove(cartItems, x => x.id == cartItem.id);
+      sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      this.$rootScope.$broadcast('cartItemsChanged', cartItems);
 
       dfd.resolve(cartItems);
     } else {
@@ -45,18 +59,18 @@ class CartService {
   getItems() {
     var dfd = this.$q.defer();
 
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
     dfd.resolve(cartItems);
 
     return dfd.promise;
   }
 
-  static createInstance($q, $resource) {
-    CartService.instance = new CartService($q, $resource);
+  static createInstance($q, $resource, $rootScope) {
+    CartService.instance = new CartService($q, $resource, $rootScope);
     return CartService.instance;
   }
 }
 
-CartService.createInstance.$inject = ['$q', '$resource'];
+CartService.createInstance.$inject = ['$q', '$resource', '$rootScope'];
 
 export default CartService;

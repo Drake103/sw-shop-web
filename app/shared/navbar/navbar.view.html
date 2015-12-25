@@ -13,8 +13,10 @@
     <ul class="nav navbar-nav navbar-right">
       <li ng-hide="isAuthenticated"><a href="#/signup">Sign up</a></li>
       <li ng-hide="isAuthenticated"><a href="#/login">Log in</a></li>
-      <li ng-show="isAuthenticated">{{username}}</li>
-      <li ng-show="isAuthenticated"><a>Cart: 3 items</a></li>
+      <li ng-show="isAuthenticated"><a>Authorized user: {{username}}</a></li>
+      <li ng-show="isAuthenticated">
+        <a href="" uib-popover-template="cartPopup.templateUrl" popover-placement="bottom">Cart: {{cartItemsCount}} items</a>
+      </li>
       <li ng-show="isAuthenticated"><a href="" ng-click="logout()">Log out</a></li>
     </ul>
   </div>

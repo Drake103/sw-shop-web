@@ -1,4 +1,5 @@
 import DatepickerController from './datepicker.controller';
+import config from 'config';
 
 class Datepicker {
   constructor() {
@@ -12,13 +13,9 @@ class Datepicker {
 
   link(scope, element, attrs, ctrl) {
 
-    scope.today = () => {
-      scope.dt = new Date().getDate();
-    };
+    scope.today = () => scope.dt = new Date().getDate();
 
-    scope.clear = function() {
-      scope.dt = null;
-    };
+    scope.clear = () => scope.dt = null;
 
     scope.open = function($event) {
       scope.status.opened = true;
@@ -33,7 +30,7 @@ class Datepicker {
       startingDay: 0,
     };
 
-    scope.format = 'yyyy/MM/dd';
+    scope.format = config.dateFormat;
 
     scope.status = {
       opened: false,

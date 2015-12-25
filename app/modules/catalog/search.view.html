@@ -70,16 +70,16 @@
         </div>
         <div class="col-md-4">
           <div class="item-field">
-            Issue date: {{::item.issueDate | date:'yyyy/dd/MM' }}
+            Issue date: {{::item.issueDate | date:'MM/dd/yyyy' }}
           </div>
           <div class="item-field">
-            <input type="checkbox" ng-model="item.inStock" onclick="return false" /> In stock
+            <i class="fa" ng-class="{'fa-square-o': !item.inStock, 'fa-check-square-o': item.inStock}"></i> In stock
           </div>
         </div>
         <div class="col-md-2">
           <div sws-rating rating-value="item.rating"></div>
           <div>Price: <span class="item-price">{{::item.price | currency:'$':2 }}</span></div>
-          <div><button type="submit" class="btn btn-primary" ng-click="ctrl.addToCart(item)">Order</button></div>
+          <div><button type="submit" class="btn btn-primary" ng-click="ctrl.addToCart(item)" ng-disabled="item.isInCart">Order</button></div>
         </div>
       </div>
     </li>

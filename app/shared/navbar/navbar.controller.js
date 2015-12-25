@@ -1,9 +1,16 @@
+import _ from 'lodash';
+
 class NavbarController {
-  constructor($scope, $location, $rootScope, AuthService) {
+  constructor($scope, $location, $rootScope, AuthService, CartService) {
     this.$scope = $scope;
     this.$location = $location;
     this.$rootScope = $rootScope;
     this.AuthService = AuthService;
+    this.CartService = CartService;
+
+    _.bindAll(this, 'handleLoginStatusChanged', 'handleRedirectToLogin', 'handleNotifyUser', 'handleCartItemsChanged', 'closeAlert', 'removeFromCart');
+
+    $scope.closeAlert = this.closeAlert;
 
     $scope.alert = {
       show: false,
@@ -11,47 +18,73 @@ class NavbarController {
       msg: '',
     };
 
-    let _showAlert = (type, msg) => {
-      $scope.alert.type = type;
-      $scope.alert.msg = msg;
-      $scope.alert.show = true;
-      $scope.alert.className = 'alert-' + type;
-    };
+    $scope.$on('redirectToLogin', this.handleRedirectToLogin);
 
-    $scope.closeAlert = () => {
-      $scope.alert.show = false;
-    };
+    $scope.$on('loginStatusChanged', this.handleLoginStatusChanged);
 
-    $scope.$on('redirectToLogin', (evt) => {
-      $location.path(AuthService.loginPath);
-      $location.replace();
-    });
+    $scope.$on('notifyUser', this.handleNotifyUser);
 
-    console.log('binding loginStatusChanged');
-    $scope.$on('loginStatusChanged', (evt, isAuthenticated, username) => {
-      console.log('loginStatusChanged invoked');
+    $scope.$on('hideAlerts', (evt) => this.closeAlert());
 
-      $rootScope.isAuthenticated = isAuthenticated;
-      $rootScope.username = username;
+    $scope.$on('cartItemsChanged', this.handleCartItemsChanged);
 
-      if (!isAuthenticated) {
-        AuthService.redirectToLogin();
-      }
-    });
-
-    $scope.$on('notifyUser', (evt, alertInfo) => {
-      _showAlert(alertInfo.type, alertInfo.msg);
-    });
-
-    $scope.$on('hideAlerts', (evt) => {
-      $scope.closeAlert();
-    });
-
-    $scope.logout = () => {AuthService.logOut();};
+    $scope.logout = () => AuthService.logOut();
 
     AuthService.checkIfAuthenticated();
+    let cartItemsDfd = CartService.getItems();
+    cartItemsDfd.then(cartItems => {
+      $rootScope.$broadcast('cartItemsChanged', cartItems);
+    });
+
+    $scope.cartPopup = {
+      templateUrl: '/shared/navbar/cart.popup.view.html',
+      title: 'Items',
+    };
+
+    $scope.removeFromCart = this.removeFromCart;
+  }
+
+  handleLoginStatusChanged(evt, isAuthenticated, username) {
+    this.$rootScope.isAuthenticated = isAuthenticated;
+    this.$rootScope.username = username;
+
+    if (!isAuthenticated) {
+      this.CartService.clearCart();
+      this.AuthService.redirectToLogin();
+    }
+  }
+
+  handleRedirectToLogin(evt) {
+    this.$location.path(this.AuthService.loginPath);
+    this.$location.replace();
+  }
+
+  handleNotifyUser(evt, alertInfo) {
+    this._showAlert(alertInfo.type, alertInfo.msg);
+  }
+
+  handleCartItemsChanged(evt, cartItems) {
+    this.$scope.cartItems = cartItems || [];
+    this.$scope.cartItemsCount = cartItems.length;
+  }
+
+  _showAlert(type, msg) {
+    let alert = this.$scope.alert;
+
+    alert.type = type;
+    alert.msg = msg;
+    alert.show = true;
+    alert.className = 'alert-' + type;
+  }
+
+  closeAlert() {
+    this.$scope.alert.show = false;
+  }
+
+  removeFromCart(item) {
+    this.CartService.removeItem(item);
   }
 }
 
-NavbarController.$inject = ['$scope', '$location', '$rootScope', 'AuthService'];
+NavbarController.$inject = ['$scope', '$location', '$rootScope', 'AuthService', 'CartService'];
 export default NavbarController;

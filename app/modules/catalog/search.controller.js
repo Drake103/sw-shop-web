@@ -7,6 +7,8 @@ class SearchController {
     this.CartService = CartService;
     this.DictionaryService = DictionaryService;
 
+    _.bindAll(this, 'handleCartItemsChanged');
+
     this.$scope.items = [];
     this.$scope.filter = {
       dateFrom: null,
@@ -17,22 +19,34 @@ class SearchController {
 
     this.ItemsService.getItems().then(resp => {
       this.$scope.items = resp.data.items;
+
+      this.CartService.getItems().then(cartItems => this.handleCartItemsChanged(null, cartItems));
     });
 
     this.DictionaryService.getColors().then(resp => {
       this.$scope.colors = resp.colors;
     });
+
+    this.$scope.$on('cartItemsChanged', this.handleCartItemsChanged);
   }
 
   addToCart(item) {
     let dfd = this.CartService.addItem(item);
 
     dfd.then(items => {
-
     }, err => {
 
       alert(err.msg);
     });
+  }
+
+  handleCartItemsChanged(evt, cartItems) {
+    let items = this.$scope.items;
+
+    let cartItemsIds = _.pluck(cartItems, 'id');
+    console.log(cartItemsIds);
+    _.forEach(items, i => i.isInCart = _.includes(cartItemsIds, i.id));
+    console.log(items);
   }
 }
 
