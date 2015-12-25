@@ -1,1 +1,3 @@
-<div></div>
+<div class="rating-wrapper">
+  <i ng-repeat="star in stars" class="fa" ng-class="{'fa-star': star.type == 'full', 'fa-star-half-o': star.type == 'half', 'fa-star-o': star.type == 'empty'}"></i>
+</div>
