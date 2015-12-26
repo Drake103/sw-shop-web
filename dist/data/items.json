@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Ferrari",
+      "color": "Red",
+      "issueDate": 1450976578,
+      "price": 99.9,
+      "rating": 3.9,
+      "inStock": false,
+      "imageUrl": "/images/ferrari.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Mercedes",
+      "color": "Red",
+      "issueDate": 1450976578,
+      "price": 98.9,
+      "rating": 4.0,
+      "inStock": false,
+      "imageUrl": "/images/mercedes.jpg"
+    },
+    {
+      "id": 3,
+      "name": "BMW",
+      "color": "White",
+      "issueDate": 1450976578,
+      "price": 90.0,
+      "rating": 4.1,
+      "inStock": true,
+      "imageUrl": "/images/bmw.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Audi",
+      "color": "Black",
+      "issueDate": 1450976578,
+      "price": 101.1,
+      "rating": 4.7,
+      "inStock": true,
+      "imageUrl": "/images/audi.jpg"
+    }
+  ]
+}

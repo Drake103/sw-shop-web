@@ -1,0 +1,16 @@
+<ul class="cart-items">
+  <li class="cart-items-li" ng-repeat="ci in cartItems">
+    <div class="row">
+      <div class="col-md-6">
+        {{ci.name}}
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <button class="btn btn-xs btn-danger" ng-click="removeFromCart(ci)"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+  </li>
+</ul>
+<div ng-show="{{cartItems.length < 1}}">
+  <p>There is no items in the cart.</p>
+</div>

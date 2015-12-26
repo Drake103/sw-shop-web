@@ -1,0 +1,87 @@
+<div ng-controller='SearchController as ctrl'>
+  <div class="panel panel-primary filter-area">
+    <div class="panel-heading">
+      Filter
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="row form-group">
+              <label class="col-md-4 control-label">From</label>
+              <div sws-datepicker class="col-md-8" date-value="filter.dateFrom" ></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row form-group">
+              <label class="col-md-4 control-label">To</label>
+              <div sws-datepicker class="col-md-8" date-value="filter.dateTo" ></div>
+            </div>
+          </div>
+          <div class="col-md-3 col-md-offset-1">
+            <label class="checkbox-inline">
+              <input class="checkbox-inline" type="checkbox" ng-model="filter.inStockOnly">
+              <label>In stock only</label>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="row form-group">
+              <label class="col-md-4 control-label">Price from</label>
+              <div class="col-md-8">
+                <input type="number" class="form-control" ng-model="filter.priceFrom">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row form-group">
+              <label class="col-md-4 control-label">To</label>
+              <div class="col-md-8">
+                <input type="number" class="form-control" ng-model="filter.priceTo">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row form-group">
+              <label class="col-md-4 control-label">Color</label>
+              <div class="col-md-7">
+                <select class="form-control" ng-model="filter.color" ng-options="color.name for color in colors track by color.code">
+                  <option value="">Select color</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ul class="list-group item-list">
+    <li class="list-group-item item-list-li" ng-repeat="item in items | catalogSearch:filter">
+      <div class="row item-list-row">
+        <div class="col-md-2 col-md-offset-1">
+          <div class="item-image">
+            <img ng-src="{{::item.imageUrl}}" alt="{{::item.name}}">
+          </div>
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <div class="item-field item-name">{{::item.name}}</div>
+          <div class="item-field">Color: {{::item.color}}</div>
+        </div>
+        <div class="col-md-4">
+          <div class="item-field">
+            Issue date: {{::item.issueDate | date:'MM/dd/yyyy' }}
+          </div>
+          <div class="item-field">
+            <i class="fa" ng-class="{'fa-square-o': !item.inStock, 'fa-check-square-o': item.inStock}"></i> In stock
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div sws-rating rating-value="item.rating"></div>
+          <div>Price: <span class="item-price">{{::item.price | currency:'$':2 }}</span></div>
+          <div><button type="submit" class="btn btn-primary" ng-click="ctrl.addToCart(item)" ng-disabled="item.isInCart">Order</button></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

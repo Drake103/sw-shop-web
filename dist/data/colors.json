@@ -1,0 +1,28 @@
+{
+  "colors": [
+    {
+      "code": "Red",
+      "name": "Red"
+    },
+    {
+      "code": "White",
+      "name": "White"
+    },
+    {
+      "code": "Black",
+      "name": "Black"
+    },
+    {
+      "code": "Blue",
+      "name": "Blue"
+    },
+    {
+      "code": "Yellow",
+      "name": "Yellow"
+    },
+    {
+      "code": "Green",
+      "name": "Green"
+    }
+  ]
+}
