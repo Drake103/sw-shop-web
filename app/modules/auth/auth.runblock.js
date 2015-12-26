@@ -1,6 +1,6 @@
 function authRunBlock($rootScope, $location, AuthService) {
   $rootScope.$on('$routeChangeStart', function(event, next) {
-    if (!next.access) return;
+    if (!next || !next.access) return;
 
     let isAuthenticated = AuthService.user.isAuthenticated;
 

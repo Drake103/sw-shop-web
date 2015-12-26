@@ -33,7 +33,7 @@ ngModule.controller('SearchController', SearchController);
 ngModule.config(function($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: '/modules/catalog/search.view.html',
+      templateUrl: './modules/catalog/search.view.html',
       controller: 'SearchController',
       access: {
         requiresLogin: true,

@@ -3,7 +3,7 @@ import NavbarController from './navbar.controller';
 class Navbar {
   constructor() {
     this.restrict = 'A';
-    this.templateUrl = '/shared/navbar/navbar.view.html';
+    this.templateUrl = './shared/navbar/navbar.view.html';
     this.controller = NavbarController;
   }
 

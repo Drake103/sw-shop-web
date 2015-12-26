@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import SHA256 from 'crypto-js/sha256';
+import config from 'config';
 
 class AuthService {
   constructor($q, $resource, $rootScope, $location, $cookieStore) {
@@ -9,7 +10,7 @@ class AuthService {
     this.$location = $location;
     this.$cookieStore = $cookieStore;
 
-    this.loginPath = '/login';
+    this.loginPath = config.loginPath;
     this.user = {
       isAuthenticated: false,
       email: null,
@@ -102,7 +103,7 @@ class AuthService {
   _changeAuth(isAuthenticated, email) {
     this.user.isAuthenticated = isAuthenticated;
     this.user.email = isAuthenticated ? email : null;
-    console.log('broadcasting loginStatusChanged');
+    
     this.$rootScope.$broadcast('loginStatusChanged', isAuthenticated, email);
   }
 

@@ -1,7 +1,7 @@
 class Rating {
   constructor() {
     this.restrict = 'A';
-    this.templateUrl = '/shared/rating/rating.view.html';
+    this.templateUrl = './shared/rating/rating.view.html';
     this.scope = {
       rating: '=ratingValue',
     };

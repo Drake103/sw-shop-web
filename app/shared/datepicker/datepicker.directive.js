@@ -4,7 +4,7 @@ import config from 'config';
 class Datepicker {
   constructor() {
     this.restrict = 'A';
-    this.templateUrl = '/shared/datepicker/datepicker.view.html';
+    this.templateUrl = './shared/datepicker/datepicker.view.html';
     this.controller = DatepickerController;
     this.scope = {
       dt: '=dateValue',

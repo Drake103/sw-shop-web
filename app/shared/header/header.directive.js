@@ -3,7 +3,7 @@ import HeaderController from './header.controller';
 class Header {
   constructor() {
     this.restrict = 'E';
-    this.templateUrl = '/shared/header/header.view.html';
+    this.templateUrl = './shared/header/header.view.html';
     this.controller = HeaderController;
   }
 

@@ -37,7 +37,7 @@ class NavbarController {
     });
 
     $scope.cartPopup = {
-      templateUrl: '/shared/navbar/cart.popup.view.html',
+      templateUrl: './shared/navbar/cart.popup.view.html',
       title: 'Items',
     };
 

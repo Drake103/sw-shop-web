@@ -19,14 +19,14 @@ ngModule.controller('SignUpController', SignUpController);
 ngModule.config(function($routeProvider) {
   $routeProvider
     .when('/login', {
-      templateUrl: '/modules/auth/login.view.html',
+      templateUrl: './modules/auth/login.view.html',
       controller: 'LogInController',
       access: {
         requiresAnonymous: true,
       },
     })
     .when('/signup', {
-      templateUrl: '/modules/auth/signup.view.html',
+      templateUrl: './modules/auth/signup.view.html',
       controller: 'SignUpController',
       access: {
         requiresAnonymous: true,

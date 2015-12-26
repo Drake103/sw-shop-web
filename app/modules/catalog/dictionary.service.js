@@ -7,7 +7,7 @@ class DictionaryService {
   }
 
   getColors() {
-    let resource = this.$resource('/data/colors.json', {}, {
+    let resource = this.$resource('./data/colors.json', {}, {
       get: {
         method:'GET',
       },

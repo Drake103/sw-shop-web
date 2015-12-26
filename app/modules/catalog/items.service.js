@@ -14,7 +14,7 @@ class ItemsService {
   }
 
   getItems() {
-    let resource = this.$resource('/data/items.json', {}, {
+    let resource = this.$resource('./data/items.json', {}, {
       get: {
         method:'GET',
         interceptor: {response: this._parseResponseDates},
