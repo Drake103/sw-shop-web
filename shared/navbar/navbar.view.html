@@ -1,0 +1,23 @@
+<div class="alert alert-danger alert-dismissable alert-fixed-top" ng-show="alert.show" role="alert">
+  <button type="button" class="close" aria-label="Close" ng-click="closeAlert()"><span aria-hidden="true">&times;</span></button>
+  <strong>Validation error.</strong> {{alert.msg}}
+</div>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/">
+        <i class="fa fa-umbrella"></i>
+      </a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-hide="isAuthenticated"><a href="#/signup">Sign up</a></li>
+      <li ng-hide="isAuthenticated"><a href="#/login">Log in</a></li>
+      <li ng-show="isAuthenticated"><a>Authorized user: {{username}}</a></li>
+      <li ng-show="isAuthenticated">
+        <a href="" uib-popover-template="cartPopup.templateUrl" popover-placement="bottom">Cart: {{cartItemsCount}} items</a>
+      </li>
+      <li ng-show="isAuthenticated"><a href="" ng-click="logout()">Log out</a></li>
+    </ul>
+  </div>
+</nav>
