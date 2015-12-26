@@ -8,7 +8,7 @@
       "price": 99.9,
       "rating": 3.9,
       "inStock": false,
-      "imageUrl": "/images/ferrari.jpg"
+      "imageUrl": "./images/ferrari.jpg"
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "price": 98.9,
       "rating": 4.0,
       "inStock": false,
-      "imageUrl": "/images/mercedes.jpg"
+      "imageUrl": "./images/mercedes.jpg"
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "price": 90.0,
       "rating": 4.1,
       "inStock": true,
-      "imageUrl": "/images/bmw.jpg"
+      "imageUrl": "./images/bmw.jpg"
     },
     {
       "id": 4,
@@ -38,7 +38,7 @@
       "price": 101.1,
       "rating": 4.7,
       "inStock": true,
-      "imageUrl": "/images/audi.jpg"
+      "imageUrl": "./images/audi.jpg"
     }
   ]
 }
