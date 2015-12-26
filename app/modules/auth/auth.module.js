@@ -6,8 +6,6 @@ import AuthService from './auth.service';
 import LogInController from './login.controller';
 import SignUpController from './signup.controller';
 
-import AuthRunBlock from './auth.runblock';
-
 let moduleName = 'AuthModule';
 
 let ngModule = angular.module(moduleName, ['ngRoute', 'ngResource']);

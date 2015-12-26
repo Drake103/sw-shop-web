@@ -6,6 +6,14 @@ ul.cart-items {
   max-width: 300px;
 
   li.cart-items-li {
-
+    margin-bottom: 5px;
+    .cart-item-name {
+      font-weight: bold;
+    }
+    .cart-item-actions {
+      .btn {
+        padding: 0px 2px;
+      }
+    }
   }
 }

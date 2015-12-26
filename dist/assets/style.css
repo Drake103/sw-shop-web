@@ -7899,6 +7899,12 @@ ul.cart-items {
   margin: 0;
   min-width: 200px;
   max-width: 300px; }
+  ul.cart-items li.cart-items-li {
+    margin-bottom: 5px; }
+    ul.cart-items li.cart-items-li .cart-item-name {
+      font-weight: bold; }
+    ul.cart-items li.cart-items-li .cart-item-actions .btn {
+      padding: 0px 2px; }
 
 .rating-wrapper {
   font-size: 1.5em; }

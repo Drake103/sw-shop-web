@@ -44,13 +44,10 @@ class SearchController {
     let items = this.$scope.items;
 
     let cartItemsIds = _.pluck(cartItems, 'id');
-    console.log(cartItemsIds);
 
     for (let i = 0; i < items.length; i++) {
       items[i].isInCart = _.includes(cartItemsIds, items[i].id);
     }
-
-    console.log(items);
   }
 }
 

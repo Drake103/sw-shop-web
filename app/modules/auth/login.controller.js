@@ -31,7 +31,7 @@ class LogInController {
   }
 
   redirectToSignup() {
-    this.$location.path('/signup');
+    this.$location.path(config.signupPath);
   }
 
   hideAlerts() {

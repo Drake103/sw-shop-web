@@ -3,4 +3,5 @@ export default {
   passwordLengthMin: 6,
   dateFormat: 'MM/dd/yyyy',
   loginPath: '/login',
+  signupPath: '/signup',
 };

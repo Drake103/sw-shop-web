@@ -4,6 +4,7 @@ import config from 'config';
 class SignUpController {
   constructor($scope, $routeParams, $location, $rootScope, AuthService) {
     this.$scope = $scope;
+    this.$routeParams = $routeParams;
     this.$location = $location;
     this.$rootScope = $rootScope;
     this.AuthService = AuthService;
@@ -33,7 +34,7 @@ class SignUpController {
     dfd.then(resp => {
       this.hideAlerts();
       alert('Account was successfully created!');
-      this.$location.path('/login');
+      this.$location.path(config.loginPath);
     }, resp => {
 
       this.showError(resp.msg);
