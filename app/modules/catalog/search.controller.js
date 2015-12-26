@@ -45,7 +45,11 @@ class SearchController {
 
     let cartItemsIds = _.pluck(cartItems, 'id');
     console.log(cartItemsIds);
-    _.forEach(items, i => i.isInCart = _.includes(cartItemsIds, i.id));
+
+    for (let i = 0; i < items.length; i++) {
+      items[i].isInCart = _.includes(cartItemsIds, items[i].id);
+    }
+
     console.log(items);
   }
 }
