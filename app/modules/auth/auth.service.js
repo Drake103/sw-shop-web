@@ -103,7 +103,7 @@ class AuthService {
   _changeAuth(isAuthenticated, email) {
     this.user.isAuthenticated = isAuthenticated;
     this.user.email = isAuthenticated ? email : null;
-    
+
     this.$rootScope.$broadcast('loginStatusChanged', isAuthenticated, email);
   }
 
