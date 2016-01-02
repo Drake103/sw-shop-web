@@ -1,5 +1,7 @@
 # sw-shop-web
 
+[Demo](http://drake103.github.io/sw-shop-web) - You can register an account, then login.
+
 ## Requirements
 NodeJS and gulp are required.
 

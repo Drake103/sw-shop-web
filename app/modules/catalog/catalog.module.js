@@ -45,6 +45,7 @@ ngModule.config(function($routeProvider) {
     .when('/', {
       templateUrl: './modules/catalog/search.view.html',
       controller: 'SearchController',
+      controllerAs: 'ctrl',
       access: {
         requiresLogin: true,
       },

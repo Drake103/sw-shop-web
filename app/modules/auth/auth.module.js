@@ -19,6 +19,7 @@ ngModule.config(function($routeProvider) {
     .when('/login', {
       templateUrl: './modules/auth/login.view.html',
       controller: 'LogInController',
+      controllerAs: 'ctrl',
       access: {
         requiresAnonymous: true,
       },
@@ -26,6 +27,7 @@ ngModule.config(function($routeProvider) {
     .when('/signup', {
       templateUrl: './modules/auth/signup.view.html',
       controller: 'SignUpController',
+      controllerAs: 'ctrl',
       access: {
         requiresAnonymous: true,
       },
